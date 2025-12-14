@@ -1,5 +1,5 @@
 overview<br>
-RASPY->CH9433->FPGA->CH9433->RASPY<br>
+RASPY->CH9344->FPGA->CH9344->RASPY<br>
 Not support WSL<br>
 Not Used 12MBPS with wsl.<br>
 Supported rasberrypi 5 with 12 Mbps.<br>
