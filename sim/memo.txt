@@ -1,1 +1,1 @@
-8*8maze
+used NSL2VL (NSLcore) and iverilog,gtkwave

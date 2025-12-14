@@ -1,0 +1,143 @@
+#include "macro.inc"
+#include"add_map.inc"
+#include "add_all.inc"
+module add_all{
+    add_map add_map_x[18];
+    wire dig_add_all;
+    wire all_size_sg[MAP_SIZE];
+    reg sig_reg=1'b0;
+    //_display("sig%b",sig_reg);
+    if(sig_reg==0b0){
+            out_data(add_map_x[0].data_out,add_map_x[0].data_near,add_map_x[1].data_out,add_map_x[1].data_near,add_map_x[2].data_out,add_map_x[2].data_near,
+add_map_x[3].data_near,add_map_x[3].data_out,add_map_x[4].data_near,add_map_x[4].data_out,add_map_x[5].data_near,add_map_x[5].data_out,
+add_map_x[6].data_out,add_map_x[6].data_near,add_map_x[7].data_out,add_map_x[7].data_near,add_map_x[8].data_out,add_map_x[8].data_near,
+add_map_x[9].data_near,add_map_x[9].data_out,add_map_x[10].data_near,add_map_x[10].data_out,add_map_x[11].data_near,add_map_x[11].data_out,
+add_map_x[12].data_out,add_map_x[12].data_near,add_map_x[13].data_out,add_map_x[13].data_near,add_map_x[14].data_out,add_map_x[14].data_near,
+add_map_x[15].data_near,add_map_x[15].data_out,add_map_x[16].data_near,add_map_x[16].data_out,add_map_x[17].data_near,add_map_x[17].data_out,
+add_map_x[0].data_out_index,add_map_x[0].data_near,add_map_x[1].data_out_index,add_map_x[1].data_near,add_map_x[2].data_out_index,add_map_x[2].data_near,
+add_map_x[3].data_near,add_map_x[3].data_out_index,add_map_x[4].data_near,add_map_x[4].data_out_index,add_map_x[5].data_near,add_map_x[5].data_out_index,
+add_map_x[6].data_out_index,add_map_x[6].data_near,add_map_x[7].data_out_index,add_map_x[7].data_near,add_map_x[8].data_out_index,add_map_x[8].data_near,
+add_map_x[9].data_near,add_map_x[9].data_out_index,add_map_x[10].data_near,add_map_x[10].data_out_index,add_map_x[11].data_near,add_map_x[11].data_out_index,
+add_map_x[12].data_out_index,add_map_x[12].data_near,add_map_x[13].data_out_index,add_map_x[13].data_near,add_map_x[14].data_out_index,add_map_x[14].data_near,
+add_map_x[15].data_near,add_map_x[15].data_out_index,add_map_x[16].data_near,add_map_x[16].data_out_index,add_map_x[17].data_near,add_map_x[17].data_out_index,
+
+add_map_x[0].data_org,add_map_x[0].data_org_near,add_map_x[1].data_org,add_map_x[1].data_org_near,add_map_x[2].data_org,add_map_x[2].data_org_near,
+add_map_x[3].data_org_near,add_map_x[3].data_org,add_map_x[4].data_org_near,add_map_x[4].data_org,add_map_x[5].data_org_near,add_map_x[5].data_org,
+add_map_x[6].data_org,add_map_x[6].data_org_near,add_map_x[7].data_org,add_map_x[7].data_org_near,add_map_x[8].data_org,add_map_x[8].data_org_near,
+add_map_x[9].data_org_near,add_map_x[9].data_org,add_map_x[10].data_org_near,add_map_x[10].data_org,add_map_x[11].data_org_near,add_map_x[11].data_org,
+add_map_x[12].data_org,add_map_x[12].data_org_near,add_map_x[13].data_org,add_map_x[13].data_org_near,add_map_x[14].data_org,add_map_x[14].data_org_near,
+add_map_x[15].data_org_near,add_map_x[15].data_org,add_map_x[16].data_org_near,add_map_x[16].data_org,add_map_x[17].data_org_near,add_map_x[17].data_org
+
+,
+add_map_x[0].s_g,add_map_x[0].s_g_near,add_map_x[1].s_g,add_map_x[1].s_g_near,add_map_x[2].s_g,add_map_x[2].s_g_near,
+add_map_x[3].s_g_near,add_map_x[3].s_g,add_map_x[4].s_g_near,add_map_x[4].s_g,add_map_x[5].s_g_near,add_map_x[5].s_g,
+add_map_x[6].s_g,add_map_x[6].s_g_near,add_map_x[7].s_g,add_map_x[7].s_g_near,add_map_x[8].s_g,add_map_x[8].s_g_near,
+add_map_x[9].s_g_near,add_map_x[9].s_g,add_map_x[10].s_g_near,add_map_x[10].s_g,add_map_x[11].s_g_near,add_map_x[11].s_g,
+add_map_x[12].s_g,add_map_x[12].s_g_near,add_map_x[13].s_g,add_map_x[13].s_g_near,add_map_x[14].s_g,add_map_x[14].s_g_near,
+add_map_x[15].s_g_near,add_map_x[15].s_g,add_map_x[16].s_g_near,add_map_x[16].s_g,add_map_x[17].s_g_near,add_map_x[17].s_g,
+add_map_x[0].all_s_g,add_map_x[0].s_g_near,add_map_x[1].all_s_g,add_map_x[1].s_g_near,add_map_x[2].all_s_g,add_map_x[2].s_g_near,
+add_map_x[3].all_s_g_near,add_map_x[3].all_s_g,add_map_x[4].all_s_g_near,add_map_x[4].all_s_g,add_map_x[5].all_s_g_near,add_map_x[5].all_s_g,
+add_map_x[6].all_s_g,add_map_x[6].s_g_near,add_map_x[7].all_s_g,add_map_x[7].s_g_near,add_map_x[8].all_s_g,add_map_x[8].s_g_near,
+add_map_x[9].all_s_g_near,add_map_x[9].all_s_g,add_map_x[10].all_s_g_near,add_map_x[10].all_s_g,add_map_x[11].all_s_g_near,add_map_x[11].all_s_g,
+add_map_x[12].all_s_g,add_map_x[12].s_g_near,add_map_x[13].all_s_g,add_map_x[13].s_g_near,add_map_x[14].all_s_g,add_map_x[14].s_g_near,
+add_map_x[15].all_s_g_near,add_map_x[15].all_s_g,add_map_x[16].all_s_g_near,add_map_x[16].all_s_g,add_map_x[17].all_s_g_near,add_map_x[17].all_s_g,
+add_map_x[0].wall_t_out,add_map_x[1].wall_t_out,add_map_x[2].wall_t_out,add_map_x[3].wall_t_out,add_map_x[4].wall_t_out,add_map_x[5].wall_t_out,add_map_x[6].wall_t_out,add_map_x[7].wall_t_out,add_map_x[8].wall_t_out,add_map_x[9].wall_t_out,add_map_x[10].wall_t_out,add_map_x[11].wall_t_out,add_map_x[12].wall_t_out,add_map_x[13].wall_t_out,add_map_x[14].wall_t_out,add_map_x[15].wall_t_out,add_map_x[16].wall_t_out,add_map_x[17].wall_t_out,
+
+all_size_sg);
+
+    }
+   if(sig_reg==0b1){
+                out_data(add_map_x[0].data_near,add_map_x[0].data_out,add_map_x[1].data_near,add_map_x[1].data_out,add_map_x[2].data_near,add_map_x[2].data_out,
+add_map_x[3].data_out,add_map_x[3].data_near,add_map_x[4].data_out,add_map_x[4].data_near,add_map_x[5].data_out,add_map_x[5].data_near,
+add_map_x[6].data_near,add_map_x[6].data_out,add_map_x[7].data_near,add_map_x[7].data_out,add_map_x[8].data_near,add_map_x[8].data_out,
+add_map_x[9].data_out,add_map_x[9].data_near,add_map_x[10].data_out,add_map_x[10].data_near,add_map_x[11].data_out,add_map_x[11].data_near,
+add_map_x[12].data_near,add_map_x[12].data_out,add_map_x[13].data_near,add_map_x[13].data_out,add_map_x[14].data_near,add_map_x[14].data_out,
+add_map_x[15].data_out,add_map_x[15].data_near,add_map_x[16].data_out,add_map_x[16].data_near,add_map_x[17].data_out,add_map_x[17].data_near,
+
+               add_map_x[0].data_near,add_map_x[0].data_out_index,add_map_x[1].data_near,add_map_x[1].data_out_index,add_map_x[2].data_near,add_map_x[2].data_out_index,
+add_map_x[3].data_out_index,add_map_x[3].data_near,add_map_x[4].data_out_index,add_map_x[4].data_near,add_map_x[5].data_out_index,add_map_x[5].data_near,
+add_map_x[6].data_near,add_map_x[6].data_out_index,add_map_x[7].data_near,add_map_x[7].data_out_index,add_map_x[8].data_near,add_map_x[8].data_out_index,
+add_map_x[9].data_out_index,add_map_x[9].data_near,add_map_x[10].data_out_index,add_map_x[10].data_near,add_map_x[11].data_out_index,add_map_x[11].data_near,
+add_map_x[12].data_near,add_map_x[12].data_out_index,add_map_x[13].data_near,add_map_x[13].data_out_index,add_map_x[14].data_near,add_map_x[14].data_out_index,
+add_map_x[15].data_out_index,add_map_x[15].data_near,add_map_x[16].data_out_index,add_map_x[16].data_near,add_map_x[17].data_out_index,add_map_x[17].data_near,
+
+add_map_x[0].data_org_near,add_map_x[0].data_org,add_map_x[1].data_org_near,add_map_x[1].data_org,add_map_x[2].data_org_near,add_map_x[2].data_org,
+add_map_x[3].data_org,add_map_x[3].data_org_near,add_map_x[4].data_org,add_map_x[4].data_org_near,add_map_x[5].data_org,add_map_x[5].data_org_near,
+add_map_x[6].data_org_near,add_map_x[6].data_org,add_map_x[7].data_org_near,add_map_x[7].data_org,add_map_x[8].data_org_near,add_map_x[8].data_org,
+add_map_x[9].data_org,add_map_x[9].data_org_near,add_map_x[10].data_org,add_map_x[10].data_org_near,add_map_x[11].data_org,add_map_x[11].data_org_near,
+add_map_x[12].data_org_near,add_map_x[12].data_org,add_map_x[13].data_org_near,add_map_x[13].data_org,add_map_x[14].data_org_near,add_map_x[14].data_org,
+add_map_x[15].data_org,add_map_x[15].data_org_near,add_map_x[16].data_org,add_map_x[16].data_org_near,add_map_x[17].data_org,add_map_x[17].data_org_near,
+
+add_map_x[0].s_g_near,add_map_x[0].s_g,add_map_x[1].s_g_near,add_map_x[1].s_g,add_map_x[2].s_g_near,add_map_x[2].s_g,
+add_map_x[3].s_g,add_map_x[3].s_g_near,add_map_x[4].s_g,add_map_x[4].s_g_near,add_map_x[5].s_g,add_map_x[5].s_g_near,
+add_map_x[6].s_g_near,add_map_x[6].s_g,add_map_x[7].s_g_near,add_map_x[7].s_g,add_map_x[8].s_g_near,add_map_x[8].s_g,
+add_map_x[9].s_g,add_map_x[9].s_g_near,add_map_x[10].s_g,add_map_x[10].s_g_near,add_map_x[11].s_g,add_map_x[11].s_g_near,
+add_map_x[12].s_g_near,add_map_x[12].s_g,add_map_x[13].s_g_near,add_map_x[13].s_g,add_map_x[14].s_g_near,add_map_x[14].s_g,
+add_map_x[15].s_g,add_map_x[15].s_g_near,add_map_x[16].s_g,add_map_x[16].s_g_near,add_map_x[17].s_g,add_map_x[17].s_g_near,
+
+add_map_x[0].all_s_g_near,add_map_x[0].all_s_g,add_map_x[1].all_s_g_near,add_map_x[1].all_s_g,add_map_x[2].all_s_g_near,add_map_x[2].all_s_g,
+add_map_x[3].all_s_g,add_map_x[3].all_s_g_near,add_map_x[4].all_s_g,add_map_x[4].all_s_g_near,add_map_x[5].all_s_g,add_map_x[5].all_s_g_near,
+add_map_x[6].all_s_g_near,add_map_x[6].all_s_g,add_map_x[7].all_s_g_near,add_map_x[7].all_s_g,add_map_x[8].all_s_g_near,add_map_x[8].all_s_g,
+add_map_x[9].all_s_g,add_map_x[9].all_s_g_near,add_map_x[10].all_s_g,add_map_x[10].all_s_g_near,add_map_x[11].all_s_g,add_map_x[11].all_s_g_near,
+add_map_x[12].all_s_g_near,add_map_x[12].all_s_g,add_map_x[13].all_s_g_near,add_map_x[13].all_s_g,add_map_x[14].all_s_g_near,add_map_x[14].all_s_g,
+add_map_x[15].all_s_g,add_map_x[15].all_s_g_near,add_map_x[16].all_s_g,add_map_x[16].all_s_g_near,add_map_x[17].all_s_g,add_map_x[17].all_s_g_near,
+
+
+add_map_x[0].wall_t_out,add_map_x[1].wall_t_out,add_map_x[2].wall_t_out,add_map_x[3].wall_t_out,add_map_x[4].wall_t_out,add_map_x[5].wall_t_out,add_map_x[6].wall_t_out,add_map_x[7].wall_t_out,add_map_x[8].wall_t_out,add_map_x[9].wall_t_out,add_map_x[10].wall_t_out,add_map_x[11].wall_t_out,add_map_x[12].wall_t_out,add_map_x[13].wall_t_out,add_map_x[14].wall_t_out,add_map_x[15].wall_t_out,add_map_x[16].wall_t_out,add_map_x[17].wall_t_out,
+all_size_sg
+
+);
+   }
+   
+all_size_sg=(MAP_SIZE)'((MAP_SIZE)'(add_map_x[0].end_wall)|(MAP_SIZE)'(add_map_x[1].end_wall)|(MAP_SIZE)'(add_map_x[2].end_wall)|(MAP_SIZE)'(add_map_x[3].end_wall)|(MAP_SIZE)'(add_map_x[4].end_wall)|(MAP_SIZE)'(add_map_x[5].end_wall)|(MAP_SIZE)'(add_map_x[6].end_wall)|(MAP_SIZE)'(add_map_x[7].end_wall)|(MAP_SIZE)'(add_map_x[8].end_wall)|(MAP_SIZE)'(add_map_x[9].end_wall)|(MAP_SIZE)'(add_map_x[10].end_wall)|(MAP_SIZE)'(add_map_x[11].end_wall)|(MAP_SIZE)'(add_map_x[12].end_wall)|(MAP_SIZE)'(add_map_x[13].end_wall)|(MAP_SIZE)'(add_map_x[14].end_wall)|(MAP_SIZE)'(add_map_x[15].end_wall)|(MAP_SIZE)'(add_map_x[16].end_wall)|(MAP_SIZE)'(add_map_x[17].end_wall));
+      //          _display("%d,data_out0_17",add_map_x[0].data_out);
+    func in_do{
+        sig_reg:=sig;
+        if(sig==0b0){ 
+
+    //func_in add_exe(wall_end_in,distance_count_all,all_sg_up,all_sg_down,all_sg_right,all_sg_left,distance,moto_org_near,moto_org_near1,moto_org_near2,moto_org_near3,moto_org,sg_up,sg_down,sg_right,sg_left,wall_t_in,moto,up,right,down,left,start,goal,now);
+//func_in add_exe(wall_end_in,distance,all_sg_up,all_sg_down,all_sg_right,all_sg_left,moto_org_near,moto_org_near1,moto_org_near2,moto_org_near3,moto_org,sg_up,sg_down,sg_right,sg_left,wall_t_in,moto,up,right,down,left,start,goal,now);
+//		add_map_x[0].add_exe(wall_end_in,distance_count_all,data_in_org18,BIT#(1'b1),BIT#(1'b1),data_in_org33,data_in_org17,sg_in18,(2'b0),(2'b0),sg_in33,dig_w,data_in17,data_in18,BIT#(1'b1),BIT#(1'b1),data_in33,start,goal,BIT'd17);
+add_map_x[0].add_exe(wall_end_in,distance_count_all,all_sg_in10,all_sg_in17,(MAP_SIZE'b0),(MAP_SIZE'b0),data_in_org10,BIT#(1'b1),BIT#(1'b1),data_in_org17,data_in_org9,sg_in10,(2'b0),(2'b0),sg_in17,dig_w,data_in9,data_in10,BIT#(1'b1),BIT#(1'b1),data_in17,start,goal,BIT'd9);
+add_map_x[1].add_exe(wall_end_in,distance_count_all,all_sg_in12,all_sg_in19,all_sg_in10,(MAP_SIZE'b0),data_in_org12,data_in_org10,BIT#(1'b1),data_in_org19,data_in_org11,sg_in12,sg_in10,(2'b0),sg_in19,dig_w,data_in11,data_in12,data_in10,BIT#(1'b1),data_in19,start,goal,BIT'd11);
+add_map_x[2].add_exe(wall_end_in,distance_count_all,all_sg_in14,all_sg_in21,all_sg_in12,(MAP_SIZE'b0),data_in_org14,data_in_org12,BIT#(1'b1),data_in_org21,data_in_org13,sg_in14,sg_in12,(2'b0),sg_in21,dig_w,data_in13,data_in12,data_in14,BIT#(1'b1),data_in21,start,goal,BIT'd13);
+add_map_x[3].add_exe(wall_end_in,distance_count_all,all_sg_in17,all_sg_in10,all_sg_in19,all_sg_in26,data_in_org17,data_in_org19,data_in_org26,data_in_org10,data_in_org18,sg_in17,sg_in19,sg_in26,sg_in10,dig_w,data_in18,data_in17,data_in19,data_in26,data_in10,start,goal,BIT'd18);
+add_map_x[4].add_exe(wall_end_in,distance_count_all,all_sg_in19,all_sg_in12,all_sg_in21,all_sg_in28,data_in_org19,data_in_org21,data_in_org28,data_in_org12,data_in_org20,sg_in19,sg_in21,sg_in28,sg_in12,dig_w,data_in20,data_in19,data_in21,data_in28,data_in12,start,goal,BIT'd20);
+add_map_x[5].add_exe(wall_end_in,distance_count_all,all_sg_in21,all_sg_in14,all_sg_in30,(MAP_SIZE'b0),data_in_org21,data_in_org30,BIT#(1'b1),data_in_org14,data_in_org22,sg_in21,sg_in30,(2'b0),sg_in14,dig_w,data_in22,data_in21,data_in30,BIT#(1'b1),data_in14,start,goal,BIT'd22);
+add_map_x[6].add_exe(wall_end_in,distance_count_all,all_sg_in26,all_sg_in17,all_sg_in33,(MAP_SIZE'b0),data_in_org26,data_in_org33,BIT#(1'b1),data_in_org17,data_in_org25,sg_in26,sg_in33,(2'b0),sg_in17,dig_w,data_in25,data_in26,data_in33,BIT#(1'b1),data_in17,start,goal,BIT'd25);
+add_map_x[7].add_exe(wall_end_in,distance_count_all,all_sg_in28,all_sg_in19,all_sg_in26,all_sg_in35,data_in_org28,data_in_org26,data_in_org35,data_in_org19,data_in_org27,sg_in28,sg_in26,sg_in35,sg_in19,dig_w,data_in27,data_in28,data_in26,data_in35,data_in19,start,goal,BIT'd27);
+add_map_x[8].add_exe(wall_end_in,distance_count_all,all_sg_in30,all_sg_in21,all_sg_in28,all_sg_in37,data_in_org30,data_in_org28,data_in_org37,data_in_org21,data_in_org29,sg_in30,sg_in28,sg_in37,sg_in21,dig_w,data_in29,data_in30,data_in28,data_in37,data_in21,start,goal,BIT'd29);
+add_map_x[9].add_exe(wall_end_in,distance_count_all,all_sg_in33,all_sg_in26,all_sg_in35,all_sg_in42,data_in_org33,data_in_org35,data_in_org42,data_in_org26,data_in_org34,sg_in33,sg_in35,sg_in42,sg_in26,dig_w,data_in34,data_in33,data_in35,data_in42,data_in26,start,goal,BIT'd34);
+add_map_x[10].add_exe(wall_end_in,distance_count_all,all_sg_in35,all_sg_in28,all_sg_in37,all_sg_in44,data_in_org35,data_in_org37,data_in_org44,data_in_org28,data_in_org36,sg_in35,sg_in37,sg_in44,sg_in28,dig_w,data_in36,data_in35,data_in37,data_in44,data_in28,start,goal,BIT'd36);
+add_map_x[11].add_exe(wall_end_in,distance_count_all,all_sg_in37,all_sg_in30,all_sg_in46,(MAP_SIZE'b0),data_in_org37,data_in_org46,BIT#(1'b1),data_in_org30,data_in_org38,sg_in37,sg_in46,(2'b0),sg_in30,dig_w,data_in38,data_in37,data_in46,BIT#(1'b1),data_in30,start,goal,BIT'd38);
+add_map_x[12].add_exe(wall_end_in,distance_count_all,all_sg_in42,all_sg_in33,all_sg_in49,(MAP_SIZE'b0),data_in_org42,data_in_org49,BIT#(1'b1),data_in_org33,data_in_org41,sg_in42,sg_in49,(2'b0),sg_in33,dig_w,data_in41,data_in42,data_in49,BIT#(1'b1),data_in33,start,goal,BIT'd41);
+add_map_x[13].add_exe(wall_end_in,distance_count_all,all_sg_in44,all_sg_in35,all_sg_in42,all_sg_in51,data_in_org44,data_in_org42,data_in_org51,data_in_org35,data_in_org43,sg_in44,sg_in42,sg_in52,sg_in35,dig_w,data_in43,data_in44,data_in42,data_in51,data_in35,start,goal,BIT'd43);
+add_map_x[14].add_exe(wall_end_in,distance_count_all,all_sg_in46,all_sg_in37,all_sg_in44,all_sg_in53,data_in_org46,data_in_org44,data_in_org53,data_in_org37,data_in_org45,sg_in46,sg_in44,sg_in53,sg_in37,dig_w,data_in45,data_in46,data_in44,data_in53,data_in37,start,goal,BIT'd45);
+add_map_x[15].add_exe(wall_end_in,distance_count_all,all_sg_in49,all_sg_in42,all_sg_in51,(MAP_SIZE'b0),data_in_org49,data_in_org51,BIT#(1'b1),data_in_org42,data_in_org50,sg_in49,sg_in51,(2'b0),sg_in42,dig_w,data_in50,data_in49,data_in51,BIT#(1'b1),data_in42,start,goal,BIT'd50);
+add_map_x[16].add_exe(wall_end_in,distance_count_all,all_sg_in51,all_sg_in44,all_sg_in53,(MAP_SIZE'b0),data_in_org51,data_in_org53,BIT#(1'b1),data_in_org44,data_in_org52,sg_in51,sg_in53,(2'b0),sg_in44,dig_w,data_in52,data_in51,data_in53,BIT#(1'b1),data_in44,start,goal,BIT'd52);
+add_map_x[17].add_exe(wall_end_in,distance_count_all,all_sg_in53,all_sg_in46,(MAP_SIZE'b0),(MAP_SIZE'b0),data_in_org53,BIT#(1'b1),BIT#(1'b1),data_in_org46,data_in_org54,sg_in53,(2'b0),(2'b0),sg_in46,dig_w,data_in54,data_in53,BIT#(1'b1),BIT#(1'b1),data_in46,start,goal,BIT'd54);       }
+        if(sig==0b1){
+
+add_map_x[0].add_exe(wall_end_in,distance_count_all,all_sg_in9,all_sg_in18,all_sg_in11,(MAP_SIZE'b0),data_in_org9,data_in_org11,BIT#(1'b1),data_in_org18,data_in_org10,sg_in9,sg_in11,(2'b0),sg_in18,dig_w,data_in10,data_in9,data_in11,BIT#(1'b1),data_in18,start,goal,BIT'd10);
+add_map_x[1].add_exe(wall_end_in,distance_count_all,all_sg_in11,all_sg_in20,all_sg_in13,(MAP_SIZE'b0),data_in_org11,data_in_org13,BIT#(1'b1),data_in_org20,data_in_org12,sg_in11,sg_in13,(2'b0),sg_in20,dig_w,data_in12,data_in11,data_in13,BIT#(1'b1),data_in20,start,goal,BIT'd12);
+add_map_x[2].add_exe(wall_end_in,distance_count_all,all_sg_in13,all_sg_in22,(MAP_SIZE'b0),(MAP_SIZE'b0),data_in_org13,BIT#(1'b1),BIT#(1'b1),data_in_org22,data_in_org14,sg_in13,(2'b0),(2'b0),sg_in22,dig_w,data_in14,data_in13,BIT#(1'b1),BIT#(1'b1),data_in22,start,goal,BIT'd14);
+add_map_x[3].add_exe(wall_end_in,distance_count_all,all_sg_in18,all_sg_in9,all_sg_in25,(MAP_SIZE'b0),data_in_org18,data_in_org25,BIT#(1'b1),data_in_org9,data_in_org17,sg_in18,sg_in25,(2'b0),sg_in9,dig_w,data_in17,data_in18,data_in25,BIT#(1'b1),data_in9,start,goal,BIT'd17);
+add_map_x[4].add_exe(wall_end_in,distance_count_all,all_sg_in20,all_sg_in11,all_sg_in18,all_sg_in27,data_in_org20,data_in_org18,data_in_org27,data_in_org11,data_in_org19,sg_in20,sg_in18,sg_in27,sg_in11,dig_w,data_in19,data_in20,data_in18,data_in27,data_in11,start,goal,BIT'd19);
+add_map_x[5].add_exe(wall_end_in,distance_count_all,all_sg_in22,all_sg_in13,all_sg_in20,all_sg_in29,data_in_org22,data_in_org20,data_in_org29,data_in_org13,data_in_org21,sg_in22,sg_in20,sg_in29,sg_in13,dig_w,data_in21,data_in22,data_in20,data_in29,data_in13,start,goal,BIT'd21);
+add_map_x[6].add_exe(wall_end_in,distance_count_all,all_sg_in25,all_sg_in18,all_sg_in27,all_sg_in34,data_in_org25,data_in_org27,data_in_org34,data_in_org18,data_in_org26,sg_in25,sg_in27,sg_in34,sg_in18,dig_w,data_in26,data_in25,data_in27,data_in34,data_in18,start,goal,BIT'd26);
+add_map_x[7].add_exe(wall_end_in,distance_count_all,all_sg_in27,all_sg_in20,all_sg_in29,all_sg_in36,data_in_org27,data_in_org29,data_in_org36,data_in_org20,data_in_org28,sg_in27,sg_in29,sg_in36,sg_in20,dig_w,data_in28,data_in27,data_in29,data_in36,data_in20,start,goal,BIT'd28);
+add_map_x[8].add_exe(wall_end_in,distance_count_all,all_sg_in29,all_sg_in22,all_sg_in38,(MAP_SIZE'b0),data_in_org29,data_in_org38,BIT#(1'b1),data_in_org22,data_in_org30,sg_in29,sg_in38,(2'b0),sg_in22,dig_w,data_in30,data_in29,data_in38,BIT#(1'b1),data_in22,start,goal,BIT'd30);
+add_map_x[9].add_exe(wall_end_in,distance_count_all,all_sg_in34,all_sg_in25,all_sg_in41,(MAP_SIZE'b0),data_in_org34,data_in_org41,BIT#(1'b1),data_in_org25,data_in_org33,sg_in34,sg_in41,(2'b0),sg_in25,dig_w,data_in33,data_in34,data_in41,BIT#(1'b1),data_in25,start,goal,BIT'd33);
+add_map_x[10].add_exe(wall_end_in,distance_count_all,all_sg_in36,all_sg_in27,all_sg_in34,all_sg_in43,data_in_org36,data_in_org34,data_in_org43,data_in_org27,data_in_org35,sg_in36,sg_in34,sg_in42,sg_in27,dig_w,data_in35,data_in36,data_in34,data_in43,data_in27,start,goal,BIT'd35);
+add_map_x[11].add_exe(wall_end_in,distance_count_all,all_sg_in38,all_sg_in29,all_sg_in36,all_sg_in45,data_in_org38,data_in_org36,data_in_org45,data_in_org29,data_in_org37,sg_in38,sg_in36,sg_in45,sg_in29,dig_w,data_in37,data_in38,data_in36,data_in45,data_in29,start,goal,BIT'd37);
+add_map_x[12].add_exe(wall_end_in,distance_count_all,all_sg_in41,all_sg_in34,all_sg_in43,all_sg_in50,data_in_org41,data_in_org43,data_in_org50,data_in_org34,data_in_org42,sg_in41,sg_in43,sg_in50,sg_in34,dig_w,data_in42,data_in41,data_in43,data_in50,data_in34,start,goal,BIT'd42);
+add_map_x[13].add_exe(wall_end_in,distance_count_all,all_sg_in43,all_sg_in36,all_sg_in45,all_sg_in52,data_in_org43,data_in_org45,data_in_org52,data_in_org36,data_in_org44,sg_in43,sg_in45,sg_in52,sg_in36,dig_w,data_in44,data_in43,data_in45,data_in52,data_in36,start,goal,BIT'd44);
+add_map_x[14].add_exe(wall_end_in,distance_count_all,all_sg_in45,all_sg_in38,all_sg_in54,(MAP_SIZE'b0),data_in_org45,data_in_org54,BIT#(1'b1),data_in_org38,data_in_org46,sg_in45,sg_in54,(2'b0),sg_in38,dig_w,data_in46,data_in45,data_in54,BIT#(1'b1),data_in38,start,goal,BIT'd46);
+add_map_x[15].add_exe(wall_end_in,distance_count_all,all_sg_in50,all_sg_in41,(MAP_SIZE'b0),(MAP_SIZE'b0),data_in_org50,BIT#(1'b1),BIT#(1'b1),data_in_org41,data_in_org49,sg_in50,(2'b0),(2'b0),sg_in41,dig_w,data_in49,data_in50,BIT#(1'b1),BIT#(1'b1),data_in41,start,goal,BIT'd49);
+add_map_x[16].add_exe(wall_end_in,distance_count_all,all_sg_in52,all_sg_in43,all_sg_in50,(MAP_SIZE'b0),data_in_org52,data_in_org50,BIT#(1'b1),data_in_org43,data_in_org51,sg_in52,sg_in50,(2'b0),sg_in43,dig_w,data_in51,data_in52,data_in50,BIT#(1'b1),data_in43,start,goal,BIT'd51);
+add_map_x[17].add_exe(wall_end_in,distance_count_all,all_sg_in54,all_sg_in45,all_sg_in52,(MAP_SIZE'b0),data_in_org54,data_in_org52,BIT#(1'b1),data_in_org45,data_in_org53,sg_in54,sg_in52,(2'b0),sg_in45,dig_w,data_in53,data_in54,data_in52,BIT#(1'b1),data_in45,start,goal,BIT'd53);
+        }
+         
+           out_do();
+    }
+}

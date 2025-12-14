@@ -1,0 +1,118 @@
+#include "macro.inc"
+%i "add_map.inc"
+#include "mul_bit.inc"
+module add_map{
+	reg data_out_index_reg[BIT]=BIT'b0;
+	reg data_out_reg[BIT]=BIT'b0;
+	reg near_reg[BIT]=BIT'b0;
+	reg wall_reg=0b0;
+	reg org_reg[BIT]=BIT'b0;
+	reg org_near_reg[BIT]=BIT'b0;
+	reg sg_reg[2]=2'b0;
+	wire indata[MAP_SIZE];
+		wire sg_w[2];
+	reg sg_near_reg[2]=2'b0;
+  reg all_sg[MAP_SIZE]=MAP_SIZE'b0;
+  reg all_sg_near[MAP_SIZE]=MAP_SIZE'b0;
+  reg now_all_sg_reg[MAP_SIZE]=MAP_SIZE'b0;
+	data_out_index=data_out_index_reg;
+	data_out=data_out_reg;
+	data_near=near_reg;
+	data_org=org_reg;
+	data_org_near=org_near_reg;
+	s_g=sg_reg;
+	all_s_g=all_sg;
+	all_s_g_near=all_sg_near;
+	s_g_near=sg_near_reg;
+	wall_t_out=wall_reg;
+	
+	//if(sg_near_reg==0b11){
+	if((sg_reg==0b11)){
+			end_wall=all_sg;
+			
+		_display("all%h",all_sg_near);
+	
+	}else{
+		end_wall=MAP_SIZE'b0;
+	}
+	
+	func add_exe{
+		wire add_mul_return[BIT];
+		wire data_out_w[BIT];	
+		wire pull_wall; 
+		wire min[BIT];
+		wire max[BIT];
+
+		near_reg:=up;
+		sg_near_reg:=sg_up;
+		all_sg_near:=all_sg_up;
+		
+			org_near_reg:=moto_org_near;
+			org_reg:=moto_org;
+		if((moto_org==WALL)){
+			data_out_reg:=WALL;
+			data_out_index_reg:=WALL;
+			wall_reg:=wall_t_in;
+			sg_w=0b00;
+			sg_reg:=0b00;
+			all_sg:=(MAP_SIZE)'b0;
+		}else if(now==goal){
+			indata=(MAP_SIZE)'0b1;
+			data_out_reg:=GOAL;
+			data_out_index_reg:=GOAL;
+			wall_reg:=wall_t_in;
+			sg_w=0b10;
+			sg_reg:=0b10;
+			all_sg:=(MAP_SIZE)'(indata<<now);
+		}else if(now==start){
+			indata=(MAP_SIZE)'0b1;;
+			data_out_reg:=START;
+			data_out_index_reg:=START;
+			wall_reg:=wall_t_in;
+			sg_w=0b01;
+			sg_reg:=0b01;
+			all_sg:=(MAP_SIZE)'(indata<<now);
+		}else if(wall_t_in){
+		
+		//	if((~((wall_end_in)[now]))&&(wall_end_in!=(MAP_SIZE)'(0b0))){
+			if((((wall_end_in)[now]==0b0))){
+		
+					data_out_reg:=WALL;
+					data_out_index_reg:=WALL;
+					
+				}
+				if((((wall_end_in)[now]==0b1))){
+
+						data_out_reg:=moto;
+						data_out_index_reg:=moto;
+				}
+				//sg_reg:=sg_near_reg;
+ 				wall_reg:=wall_t_in;
+			   // all_sg:=all_sg_near;
+		
+		}else if(wall_t_in==0){
+				sg_w=sg_up|sg_down|sg_left|sg_right;
+				sg_reg:=sg_w;
+				if(sg_w!=sg_near_reg&&(0b00==sg_near_reg)){
+				//	if(sg_w!=sg_reg&&(0b00==sg_reg)){
+				//	if((sg_w!=sg_reg)&&(!(sg_up==0b11||sg_right==0b11||sg_left==0b11||sg_down==0b11))){
+			indata=(MAP_SIZE)'0b1;
+					all_sg:=(MAP_SIZE)'(all_sg_up|all_sg_down|all_sg_left|all_sg_right|(MAP_SIZE)'(indata<<now));
+					if(sg_w==0b10){
+						data_out_reg:=distance;
+					  wall_reg:=wall_t_in;	
+					}else if(sg_w==0b01){
+						data_out_reg:=BIT'(0dMAP_SIZE)-BIT'(distance);
+					  wall_reg:=wall_t_in;	
+					}else if(sg_w==0b11){
+						data_out_reg:=BIT'(0dMAP_SIZE)-BIT'(distance);
+					  wall_reg:=1;	
+					}
+				}else{		
+
+					data_out_reg:=moto;
+					data_out_index_reg:=moto;
+				}
+			}
+	}
+}
