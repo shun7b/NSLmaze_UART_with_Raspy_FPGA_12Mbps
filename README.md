@@ -1,4 +1,5 @@
 overview<br>
+Used bidirectional-search<br>
 RASPY->CH9344->FPGA->CH9344->RASPY<br>
 Not support WSL(Suppoted taraterm)<br>
 Not Used 12MBPS with wsl.<br>
