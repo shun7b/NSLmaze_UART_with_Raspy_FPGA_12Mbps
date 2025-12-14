@@ -1,0 +1,59 @@
+#include "macro.inc"
+%i "seach.inc"
+%i "seach_block.inc"
+module seach{
+    seach_block seach_blockx[36];
+    reg startplot_reg[BIT]=BIT'b0,goalplot_reg[BIT]=BIT'b0;
+    wire startplot_wire[BIT],goalplot_wire[BIT];
+    out_data(seach_blockx[0].data_out,seach_blockx[1].data_out,seach_blockx[2].data_out,seach_blockx[3].data_out,seach_blockx[4].data_out,seach_blockx[5].data_out,seach_blockx[6].data_out,seach_blockx[7].data_out,seach_blockx[8].data_out,seach_blockx[9].data_out,seach_blockx[10].data_out,seach_blockx[11].data_out,seach_blockx[12].data_out,seach_blockx[13].data_out,seach_blockx[14].data_out,seach_blockx[15].data_out,seach_blockx[16].data_out,seach_blockx[17].data_out,seach_blockx[18].data_out,seach_blockx[19].data_out,seach_blockx[20].data_out,seach_blockx[21].data_out,seach_blockx[22].data_out,seach_blockx[23].data_out,seach_blockx[24].data_out,seach_blockx[25].data_out,seach_blockx[26].data_out,seach_blockx[27].data_out,seach_blockx[28].data_out,seach_blockx[29].data_out,seach_blockx[30].data_out,seach_blockx[31].data_out,seach_blockx[32].data_out,seach_blockx[33].data_out,seach_blockx[34].data_out,seach_blockx[35].data_out,startplot_reg,goalplot_reg);
+          
+      
+    func in_do{
+        seq{
+            {
+              seach_blockx[0].in_do(data_in9,BIT'd9);
+seach_blockx[1].in_do(data_in10,BIT'd10);
+seach_blockx[2].in_do(data_in11,BIT'd11);
+seach_blockx[3].in_do(data_in12,BIT'd12);
+seach_blockx[4].in_do(data_in13,BIT'd13);
+seach_blockx[5].in_do(data_in14,BIT'd14);
+seach_blockx[6].in_do(data_in17,BIT'd17);
+seach_blockx[7].in_do(data_in18,BIT'd18);
+seach_blockx[8].in_do(data_in19,BIT'd19);
+seach_blockx[9].in_do(data_in20,BIT'd20);
+seach_blockx[10].in_do(data_in21,BIT'd21);
+seach_blockx[11].in_do(data_in22,BIT'd22);
+seach_blockx[12].in_do(data_in25,BIT'd25);
+seach_blockx[13].in_do(data_in26,BIT'd26);
+seach_blockx[14].in_do(data_in27,BIT'd27);
+seach_blockx[15].in_do(data_in28,BIT'd28);
+seach_blockx[16].in_do(data_in29,BIT'd29);
+seach_blockx[17].in_do(data_in30,BIT'd30);
+seach_blockx[18].in_do(data_in33,BIT'd33);
+seach_blockx[19].in_do(data_in34,BIT'd34);
+seach_blockx[20].in_do(data_in35,BIT'd35);
+seach_blockx[21].in_do(data_in36,BIT'd36);
+seach_blockx[22].in_do(data_in37,BIT'd37);
+seach_blockx[23].in_do(data_in38,BIT'd38);
+seach_blockx[24].in_do(data_in41,BIT'd41);
+seach_blockx[25].in_do(data_in42,BIT'd42);
+seach_blockx[26].in_do(data_in43,BIT'd43);
+seach_blockx[27].in_do(data_in44,BIT'd44);
+seach_blockx[28].in_do(data_in45,BIT'd45);
+seach_blockx[29].in_do(data_in46,BIT'd46);
+seach_blockx[30].in_do(data_in49,BIT'd49);
+seach_blockx[31].in_do(data_in50,BIT'd50);
+seach_blockx[32].in_do(data_in51,BIT'd51);
+seach_blockx[33].in_do(data_in52,BIT'd52);
+seach_blockx[34].in_do(data_in53,BIT'd53);
+seach_blockx[35].in_do(data_in54,BIT'd54);
+
+
+              startplot_reg:=(seach_blockx[0].start|seach_blockx[1].start|seach_blockx[2].start|seach_blockx[3].start|seach_blockx[4].start|seach_blockx[5].start|seach_blockx[6].start|seach_blockx[7].start|seach_blockx[8].start|seach_blockx[9].start|seach_blockx[10].start|seach_blockx[11].start|seach_blockx[12].start|seach_blockx[13].start|seach_blockx[14].start|seach_blockx[15].start|seach_blockx[16].start|seach_blockx[17].start|seach_blockx[18].start|seach_blockx[19].start|seach_blockx[20].start|seach_blockx[21].start|seach_blockx[22].start|seach_blockx[23].start|seach_blockx[24].start|seach_blockx[25].start|seach_blockx[26].start|seach_blockx[27].start|seach_blockx[28].start|seach_blockx[29].start|seach_blockx[30].start|seach_blockx[31].start|seach_blockx[32].start|seach_blockx[33].start|seach_blockx[34].start|seach_blockx[35].start);
+              goalplot_reg:=(seach_blockx[0].goal|seach_blockx[1].goal|seach_blockx[2].goal|seach_blockx[3].goal|seach_blockx[4].goal|seach_blockx[5].goal|seach_blockx[6].goal|seach_blockx[7].goal|seach_blockx[8].goal|seach_blockx[9].goal|seach_blockx[10].goal|seach_blockx[11].goal|seach_blockx[12].goal|seach_blockx[13].goal|seach_blockx[14].goal|seach_blockx[15].goal|seach_blockx[16].goal|seach_blockx[17].goal|seach_blockx[18].goal|seach_blockx[19].goal|seach_blockx[20].goal|seach_blockx[21].goal|seach_blockx[22].goal|seach_blockx[23].goal|seach_blockx[24].goal|seach_blockx[25].goal|seach_blockx[26].goal|seach_blockx[27].goal|seach_blockx[28].goal|seach_blockx[29].goal|seach_blockx[30].goal|seach_blockx[31].goal|seach_blockx[32].goal|seach_blockx[33].goal|seach_blockx[34].goal|seach_blockx[35].goal );
+         }
+
+        out_do();
+      }          
+    }
+}

@@ -1,0 +1,181 @@
+#include "macro.inc"
+#include"meiro.inc"
+#include "read.inc"
+#include "top_read.inc"
+#include "uart.inc"
+module top_read{
+  meiro meirotest;
+   read read_x;
+   uart send;
+   reg set_sw=1'b0;
+   reg set_sw_end=1'b0;
+    mem encode[16][8]={0b00111111,0b00000110,
+	0b01011011,0b01001111,
+	0b01100110,0b01101101,
+	0b01111101,0b00100111,
+	0b01111111,0b01101111,
+    0b01110111,0b01111100,
+	0b00111001,0b01011110,
+	0b01111001,0b01110001};
+    reg count_txd[32]=32'b0;
+    reg count[32]=32'b0;
+    mem read_data[36][BIT]={BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,
+    BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,
+    BIT'b0,BIT'b0,BIT'b0,BIT'b0};
+    mem out_data[39][8]={8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,
+    8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,
+    8'b0,8'b0,8'b0,8'b0,8'b0,8'b0,8'b0};
+    //reg read_data[BIT];
+    reg count_timer[32]=32'b0;
+    reg times[4]=4'b0;
+    reg out_count[6]=6'b0;
+    reg state_num[8]=8'b0;
+    reg uart_data_in[8]=8'b0;
+    HEX0=~encode[state_num[7:4]];
+    HEX1=~encode[state_num[3:0]];
+    HEX2=~encode[count[3:0]];
+    HEX3=~encode[times];
+    read_x.Rx_BitLength_i=0b11;
+    read_x.Rx_ParityEN_i=0b0;
+    if(count_timer==32'd60000000){
+        times++;
+        count_timer:=32'b0;
+    }else{
+        count_timer:=count_timer+32'b1;
+    }
+    read_x.RxD_i =rxd;
+    func read_x.RxD_Ready_o{
+        
+        if(count<32'(0d36)){
+            state_num:=read_x.Rx_Data_o;
+            if(((read_x.Rx_Data_o-0x30)&0x06)==0x02){
+                read_data[count]:=LOAD;
+            }
+            if(((read_x.Rx_Data_o-0x30)&0x06)==0x06){
+                read_data[count]:=WALL;
+            }
+            
+            if(((read_x.Rx_Data_o-0x30)&0x06)==0x00){
+                read_data[count]:=GOAL;
+            }
+            
+            if(((read_x.Rx_Data_o-0x30)&0x06)==0x04){
+                read_data[count]:=START;
+            }
+            if((((read_x.Rx_Data_o-0x30)>>2)&0x06)==0x02){
+                read_data[count+1]:=LOAD;
+            }
+            if((((read_x.Rx_Data_o-0x30)>>2)&0x06)==0x06){
+                read_data[count+1]:=WALL;
+            }
+            
+            if((((read_x.Rx_Data_o-0x30)>>2)&0x06)==0x00){
+                read_data[count+1]:=GOAL;
+            }
+            
+            if((((read_x.Rx_Data_o-0x30)>>2)&0x06)==0x04){
+                read_data[count+1]:=START;
+            }
+            count:=count+2;
+        }else if(count==32'(0d36)){
+            count:=32'd38;
+            state_num:=0xAA;
+            //if(read_x.Rx_Data_o[7:1]==0b0011010){
+                 //state_num:=0b0011;
+            meirotest.in_do(WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL,
+ WALL,read_data[0],read_data[1],read_data[2],read_data[3], read_data[4], read_data[5], WALL,
+ WALL,read_data[6],read_data[7],read_data[8],read_data[9], read_data[10], read_data[11], WALL,
+ WALL,read_data[12],read_data[13],read_data[14],read_data[15], read_data[16], read_data[17], WALL,
+ WALL,read_data[18],read_data[19],read_data[20],read_data[21], read_data[22], read_data[23], WALL,
+ WALL,read_data[24],read_data[25],read_data[26],read_data[27], read_data[28], read_data[29], WALL,
+ WALL,read_data[30],read_data[31],read_data[32],read_data[33], read_data[34], read_data[35], WALL,
+ WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL
+            );
+            //}
+        }
+        set_sw_end:=0b1;
+    }
+//        uart_data_in:=0x38;
+    if(state_num==0b11000000){
+        if(count_txd==32'd100){
+                if(out_count>=0&&out_count<0d36){
+                    send.Tx_Start_i();
+                }
+                count_txd:=32'b0;
+ 
+        }else{
+            if(count_txd==32'd99){
+                if(out_count>=0&&out_count<0d38){
+                    if(out_count>0&&out_count<0d36){
+                            uart_data_in:=out_data[out_count-1]; 
+                    }
+                    if(out_count==0){
+                            uart_data_in:=0x02; 
+                    }
+                    
+                    if(out_count==0d36){
+                            uart_data_in:=0x03; 
+                    }
+                    if(out_count==0d37){
+                        uart_data_in:=(out_data[0]^out_data[1]^out_data[2]^out_data[3]^out_data[4]^out_data[5]^out_data[6]^out_data[7]^out_data[8]^out_data[9]
+                        ^out_data[10]^out_data[11]^out_data[12]^out_data[13]^out_data[14]^out_data[15]^out_data[16]^out_data[17]^out_data[18]^out_data[19]
+                        ^out_data[20]^out_data[21]^out_data[22]^out_data[23]^out_data[24]^out_data[25]^out_data[26]^out_data[27]^out_data[28]^out_data[29]
+                        ^out_data[30]^out_data[31]^out_data[32]^out_data[33]^out_data[34]^out_data[35]);
+                    }
+                    out_count++;   
+                }
+            }
+            count_txd++;
+        }
+    }
+    read_x.Rx_Enable_i=0b1;
+    func meirotest.end_meiro { 
+        
+        state_num:=0b11000000;
+         out_data[0]:=8'({0b00000,meirotest.kekka_out0,0b0})+0x30;
+out_data[1]:=8'({0b00000,meirotest.kekka_out1,0b0})+0x30;
+out_data[2]:=8'({0b00000,meirotest.kekka_out2,0b0})+0x30;
+out_data[3]:=8'({0b00000,meirotest.kekka_out3,0b0})+0x30;
+out_data[4]:=8'({0b00000,meirotest.kekka_out4,0b0})+0x30;
+out_data[5]:=8'({0b00000,meirotest.kekka_out5,0b0})+0x30;
+out_data[6]:=8'({0b00000,meirotest.kekka_out6,0b0})+0x30;
+out_data[7]:=8'({0b00000,meirotest.kekka_out7,0b0})+0x30;
+out_data[8]:=8'({0b00000,meirotest.kekka_out8,0b0})+0x30;
+out_data[9]:=8'({0b00000,meirotest.kekka_out9,0b0})+0x30;
+out_data[10]:=8'({0b00000,meirotest.kekka_out10,0b0})+0x30;
+out_data[11]:=8'({0b00000,meirotest.kekka_out11,0b0})+0x30;
+out_data[12]:=8'({0b00000,meirotest.kekka_out12,0b0})+0x30;
+out_data[13]:=8'({0b00000,meirotest.kekka_out13,0b0})+0x30;
+out_data[14]:=8'({0b00000,meirotest.kekka_out14,0b0})+0x30;
+out_data[15]:=8'({0b00000,meirotest.kekka_out15,0b0})+0x30;
+out_data[16]:=8'({0b00000,meirotest.kekka_out16,0b0})+0x30;
+out_data[17]:=8'({0b00000,meirotest.kekka_out17,0b0})+0x30;
+out_data[18]:=8'({0b00000,meirotest.kekka_out18,0b0})+0x30;
+out_data[19]:=8'({0b00000,meirotest.kekka_out19,0b0})+0x30;
+out_data[20]:=8'({0b00000,meirotest.kekka_out20,0b0})+0x30;
+out_data[21]:=8'({0b00000,meirotest.kekka_out21,0b0})+0x30;
+out_data[22]:=8'({0b00000,meirotest.kekka_out22,0b0})+0x30;
+out_data[23]:=8'({0b00000,meirotest.kekka_out23,0b0})+0x30;
+out_data[24]:=8'({0b00000,meirotest.kekka_out24,0b0})+0x30;
+out_data[25]:=8'({0b00000,meirotest.kekka_out25,0b0})+0x30;
+out_data[26]:=8'({0b00000,meirotest.kekka_out26,0b0})+0x30;
+out_data[27]:=8'({0b00000,meirotest.kekka_out27,0b0})+0x30;
+out_data[28]:=8'({0b00000,meirotest.kekka_out28,0b0})+0x30;
+out_data[29]:=8'({0b00000,meirotest.kekka_out29,0b0})+0x30;
+out_data[30]:=8'({0b00000,meirotest.kekka_out30,0b0})+0x30;
+out_data[31]:=8'({0b00000,meirotest.kekka_out31,0b0})+0x30;
+out_data[32]:=8'({0b00000,meirotest.kekka_out32,0b0})+0x30;
+out_data[33]:=8'({0b00000,meirotest.kekka_out33,0b0})+0x30;
+out_data[34]:=8'({0b00000,meirotest.kekka_out34,0b0})+0x30;
+out_data[35]:=8'({0b00000,meirotest.kekka_out35,0b0})+0x30;
+        
+    }
+
+     send.Freq_Divide_Param_i=0x0000;
+     send.Tx_BitLength_i=0b11;
+     send.Tx_ParityEN_i =0b0;
+     send.Tx_Enable_i=TRUE;
+     send.Tx_Data_i=uart_data_in;
+     send.Tx_OddParity_i=1'b0; 
+     txd=send.TxD_o;
+}

@@ -1,0 +1,101 @@
+VCD info: dumpfile test.vcd opened for output.
+00, 46goal,  0
+hello
+out0= 32
+start   9 goal  46
+exit 000,dig_exit0,all0000000000000000000000000000000000000000000000000000000000000000
+7f,7f,7f,7f,7f,7f,
+7f,7f,7f,7f,7f,7f,
+7f,7f,7f,7f,7f,7f,
+7f,7f,7f,7f,7f,7f,
+7f,7f,7f,7f,7f,00,
+7f,7f,7f,7f,7f,7f,
+
+3f,7f,7f,7f,7f,7f,
+7f,7f,7f,7f,7f,7f,
+7f,7f,7f,7f,7f,7f,
+7f,7f,7f,7f,7f,7f,
+7f,7f,7f,7f,02,00,
+7f,7f,7f,7f,7f,7f,
+
+exit 000,dig_exit0
+all0000000000000000000000000000000000000000000000000000000000000000
+exit 000,dig_exit0,all0000000000000000000000000000000000000000000000000000000000000000
+3f,3d,7f,7f,7f,7f,
+3d,7f,7f,7f,7f,7f,
+7f,7f,7f,7f,7f,7f,
+7f,7f,7f,7f,03,7f,
+7f,7f,7f,03,02,00,
+7f,7f,7f,7f,03,7f,
+
+3f,3d,3c,7f,7f,7f,
+3d,7f,7f,7f,7f,7f,
+3c,7f,7f,7f,04,7f,
+7f,7f,7f,7f,03,7f,
+7f,7f,04,03,02,00,
+7f,7f,7f,7f,03,7f,
+
+exit 000,dig_exit0
+all0000000000000000000000000000000000000000000000000000000000000000
+exit 000,dig_exit0,all0000000000000000000000000000000000000000000000000000000000000000
+3f,3d,3c,3b,7f,7f,
+3d,7f,3b,7f,05,7f,
+3c,3b,7f,05,04,05,
+3b,7f,7f,7f,03,7f,
+7f,05,04,03,02,00,
+7f,7f,05,7f,03,7f,
+
+3f,3d,3c,3b,3a,3b,
+3d,7f,3b,7f,05,7f,
+3c,3b,3a,05,04,05,
+3b,7f,7f,7f,03,7f,
+3a,05,04,03,02,00,
+7f,7f,05,7f,03,7f,
+
+exit 000,dig_exit1
+all0000000000000000000000000000000000000000000000000000000000000000
+exit 001,dig_exit1,all0000000000000000011111100010001000111110001010100011111000000000
+3f,3d,3c,3b,3a,3b,
+3d,7f,3b,7f,05,7f,
+3c,3b,3a,05,04,05,
+3b,7f,7f,7f,03,7f,
+3a,05,04,03,02,00,
+7f,7f,05,7f,03,7f,
+
+3f,3d,3c,3b,3a,3b,
+3d,7f,3b,7f,05,7f,
+3c,3b,3a,05,04,05,
+3b,7f,7f,7f,03,7f,
+3a,05,04,03,02,00,
+7f,7f,05,7f,03,7f,
+
+start    9 goal   46
+inout 1
+move_out   17
+start    9 goal   46
+inout 1
+move_out   25
+start    9 goal   46
+inout 1
+move_out   33
+start    9 goal   46
+inout 1
+move_out   41
+start    9 goal   46
+inout 1
+move_out   42
+start    9 goal   46
+inout 1
+move_out   43
+start    9 goal   46
+inout 1
+move_out   44
+start    9 goal   46
+inout 1
+move_out   45
+start    9 goal   46
+inout 1
+move_out   46
+start    9 goal   46
+inout 0
+bye

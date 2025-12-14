@@ -1,0 +1,40 @@
+/*declare subs{
+    input data_index[240],data_in[240];
+    output data_index_out[240];
+    func_in subs_exe(data_index,data_in):data_index_out;
+}*/
+#include "macro.inc"
+%i "subs.inc"
+%i "sub_plot.inc"
+module subs{
+    sub_plot sub_plot_x[18];
+    reg sub_reg[BIT]=BIT'b0;
+    func subs_exe{
+
+{
+sub_plot_x[0].in_do(data_in9,data_index9);
+sub_plot_x[1].in_do(data_in10,data_index10);
+sub_plot_x[2].in_do(data_in11,data_index11);
+sub_plot_x[3].in_do(data_in12,data_index12);
+sub_plot_x[4].in_do(data_in13,data_index13);
+sub_plot_x[5].in_do(data_in14,data_index14);
+
+sub_plot_x[6].in_do(data_in17,data_index17);
+sub_plot_x[7].in_do(data_in18,data_index18);
+sub_plot_x[8].in_do(data_in19,data_index19);
+sub_plot_x[9].in_do(data_in20,data_index20);
+sub_plot_x[10].in_do(data_in21,data_index21);
+sub_plot_x[11].in_do(data_in22,data_index22);
+
+sub_plot_x[12].in_do(data_in25,data_index25);
+sub_plot_x[13].in_do(data_in26,data_index26);
+sub_plot_x[14].in_do(data_in27,data_index27);
+sub_plot_x[15].in_do(data_in28,data_index28);
+sub_plot_x[16].in_do(data_in29,data_index29);
+sub_plot_x[17].in_do(data_in30,data_index30);        
+         sub_reg:=sub_plot_x[0].sa|sub_plot_x[1].sa|sub_plot_x[2].sa|sub_plot_x[3].sa|sub_plot_x[4].sa|sub_plot_x[5].sa|sub_plot_x[6].sa|sub_plot_x[7].sa|sub_plot_x[8].sa|sub_plot_x[9].sa|sub_plot_x[10].sa|sub_plot_x[11].sa|sub_plot_x[12].sa|sub_plot_x[13].sa|sub_plot_x[14].sa|sub_plot_x[15].sa|sub_plot_x[16].sa|sub_plot_x[17].sa;
+
+}
+    }
+     sub_array_out=sub_reg;
+}

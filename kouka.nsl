@@ -1,0 +1,177 @@
+#include "macro.inc"
+#include"kouka.inc"
+#include"min_select.inc"
+module kouka{
+    mem cost[60][2]={
+        2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,
+        2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,
+        2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,
+        2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,
+        2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,
+        2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0,2'b0
+    };
+    mem map[MAP_SIZE][BIT]={
+        BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,
+        BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,
+        BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,
+        BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,
+        BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,
+        BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,
+        BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,
+        BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,
+        BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,
+        BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,
+        BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,
+        BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,
+        BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0,BIT'b0};
+    min_select min_select_x[3];
+    func_self loot();
+    reg start_reg[BIT]=BIT'b0;
+    reg goal_reg[BIT]=BIT'b0;
+    reg count[BIT]=BIT'b0;
+    wire move_out[BIT];
+    
+    func in_do seq{
+        label_name saikyuukouka_label;
+        reg nowplot[BIT]=BIT'b0;
+ 
+            {
+          map[0]:=BIT#(1'b1);
+map[1]:=BIT#(1'b1);
+map[2]:=BIT#(1'b1);
+map[3]:=BIT#(1'b1);
+map[4]:=BIT#(1'b1);
+map[5]:=BIT#(1'b1);
+map[6]:=BIT#(1'b1);
+map[7]:=BIT#(1'b1);
+map[8]:=BIT#(1'b1);
+map[9]:=data_in9;
+map[10]:=data_in10;
+map[11]:=data_in11;
+map[12]:=data_in12;
+map[13]:=data_in13;
+map[14]:=data_in14;
+map[15]:=BIT#(1'b1);
+map[16]:=BIT#(1'b1);
+map[17]:=data_in17;
+map[18]:=data_in18;
+map[19]:=data_in19;
+map[20]:=data_in20;
+map[21]:=data_in21;
+map[22]:=data_in22;
+map[23]:=BIT#(1'b1);
+map[24]:=BIT#(1'b1);
+map[25]:=data_in25;
+map[26]:=data_in26;
+map[27]:=data_in27;
+map[28]:=data_in28;
+map[29]:=data_in29;
+map[30]:=data_in30;
+map[31]:=BIT#(1'b1);
+map[32]:=BIT#(1'b1);
+map[33]:=data_in33;
+map[34]:=data_in34;
+map[35]:=data_in35;
+map[36]:=data_in36;
+map[37]:=data_in37;
+map[38]:=data_in38;
+map[39]:=BIT#(1'b1);
+map[40]:=BIT#(1'b1);
+map[41]:=data_in41;
+map[42]:=data_in42;
+map[43]:=data_in43;
+map[44]:=data_in44;
+map[45]:=data_in45;
+map[46]:=data_in46;
+map[47]:=BIT#(1'b1);
+map[48]:=BIT#(1'b1);
+map[49]:=data_in49;
+map[50]:=data_in50;
+map[51]:=data_in51;
+map[52]:=data_in52;
+map[53]:=data_in53;
+map[54]:=data_in54;
+map[55]:=BIT#(1'b1);
+map[56]:=BIT#(1'b1);
+map[57]:=BIT#(1'b1);
+map[58]:=BIT#(1'b1);
+map[59]:=BIT#(1'b1);
+map[60]:=BIT#(1'b1);
+map[61]:=BIT#(1'b1);
+map[62]:=BIT#(1'b1);
+map[63]:=BIT#(1'b1);
+
+
+                nowplot:=start;
+                count:=BIT'b0;
+                start_reg:=start;
+                goal_reg:=goal;
+            }
+            saikyuukouka_label:
+            {
+                loot();
+                _display("start %d goal %d",start_reg,goal_reg);
+            }
+            {
+            if(nowplot!=goal_reg){
+                goto saikyuukouka_label;
+            }
+            if(nowplot==goal_reg){
+                cost[count]:={~cost[count-1][1],cost[count-1][0]};
+            }
+            _display("move_out %d,%d,%b,%b,%b,%b,%b,%b,",nowplot,move_out,cost[0],cost[1],cost[2],cost[3],cost[4],cost[5]);
+
+            _display("inout %b",(nowplot!=goal_reg));
+            }
+           // cost[count]:=goal_reg;
+out_do(cost[0],cost[1],cost[2],cost[3],cost[4],cost[5],cost[6],cost[7],cost[8],cost[9],
+        cost[10],cost[11],cost[12],cost[13],cost[14],cost[15],cost[16],cost[17],cost[18],cost[19],
+        cost[20],cost[21],cost[22],cost[23],cost[24],cost[25],cost[26],cost[27],cost[28],cost[29],
+        cost[30],cost[31],cost[32],cost[33],cost[34],cost[35],cost[36],cost[37],cost[38],cost[39],
+        cost[40],cost[41],cost[42],cost[43],cost[44],cost[45],cost[46],cost[47],cost[48],cost[49],
+        cost[50],cost[51],cost[52],cost[53],cost[54],cost[55],cost[56],cost[57],cost[58],cost[59]
+               );
+    }
+      
+    func loot seq{
+        wire move_1[BIT];
+        wire move_2[BIT];
+        wire enelgy_1[BIT];
+        wire enelgy_2[BIT];
+        
+    
+            {
+                _display("nowplot=%d",nowplot);
+            }
+            {
+                enelgy_1=min_select_x[0].min_select_exe(map[nowplot-1],map[nowplot+1],nowplot-1,nowplot+1);
+                move_1=min_select_x[0].outplot;
+                enelgy_2=min_select_x[1].min_select_exe(map[nowplot-WIDTH],map[nowplot+WIDTH],nowplot-WIDTH,nowplot+WIDTH);
+                move_2=min_select_x[1].outplot;
+                min_select_x[2].min_select_exe(enelgy_1,enelgy_2,move_1,move_2);
+                move_out=min_select_x[2].outplot;
+                nowplot:=move_out;
+                    count++;
+                    if((nowplot-WIDTH)==move_out){
+                        _display("up");
+                        cost[count]:=0b00;
+                    }
+                    if((nowplot+WIDTH)==move_out){
+                        _display("down");
+                        cost[count]:=0b10;
+                    }
+                    if((nowplot-1)==move_out){
+                         _display("left");
+                        cost[count]:=0b01;
+                    }
+                    
+                    if((nowplot+1)==move_out){
+                        _display("right");
+
+                        cost[count]:=0b11;
+                    }
+ 
+            }
+    }
+       
+}

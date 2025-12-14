@@ -1,0 +1,16 @@
+
+
+C:/Users/socce/Downloads/maze_read/bidirectional-search-main/UART/apll.v
+
+Sep 14 10PM:56:03>: Megafunction PLL Intel FPGA IP v23.1 is not listed in any 
+wizard.lst file in the specified library path(s).Wizard launch aborted
+
+C:/Users/socce/Downloads/maze_read/bidirectional-search-main/UART/apll.v
+
+Sep 14 10PM:56:03>: Megafunction PLL Intel FPGA IP v23.1 is not listed in any 
+wizard.lst file in the specified library path(s).Wizard launch aborted
+
+C:/Users/socce/Downloads/maze_read/bidirectional-search-main/UART/apll.v
+
+Sep 14 10PM:56:20>: Megafunction PLL Intel FPGA IP v23.1 is not listed in any 
+wizard.lst file in the specified library path(s).Wizard launch aborted
