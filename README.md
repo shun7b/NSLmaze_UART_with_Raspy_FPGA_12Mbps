@@ -6,5 +6,5 @@ Supported rasberrypi 5 with 12 Mbps.<br>
 maze is 8*8.<br>
 Used maze search with FPGA.<br>
 Used 60 Mhz.(UART is 12 Mbps)<br>
-Used DE0-CV.
+Used DE0-CV.<br>
 https://github.com/WCHSoftGroup/ch9344ser_linux is CH9344 driver with Raspy5.
