@@ -1,4 +1,4 @@
-overview<br>
+Overview<br>
 Used bidirectional-search<br>
 RASPY->CH9344->FPGA->CH9344->RASPY<br>
 Not support WSL(Suppoted teraterm)<br>
@@ -8,4 +8,8 @@ maze is 8*8.<br>
 Used maze search with FPGA.<br>
 Used 60 Mhz.(UART is 12 Mbps)<br>
 Used DE0-CV.<br>
-https://github.com/WCHSoftGroup/ch9344ser_linux is CH9344 driver with Raspy5.
+https://github.com/WCHSoftGroup/ch9344ser_linux is CH9344 driver with Raspy5.<br>
+About NSL<br>
+https://pgate1.at-ninja.jp/memo/NSLmuri/<br>
+https://www.overtone.co.jp/nslsupport/download/<br>
+<br>
